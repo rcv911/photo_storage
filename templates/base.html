@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+</head>
+
+<style>
+#grid {
+  display: grid;
+  grid-row-auto: 100px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1vw;
+  }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="">Photo Storage</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <form class="navbar-form navbar-left">
+
+          </form>
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <form action="" method=post enctype=multipart/form-data>
+          <input type=text name=FileName class="form-control" id="FileName" placeholder="Введите имя файла">
+          <p><input type=file name=file>
+          <input type=submit value=Upload>
+    </form>
+
+    {% block alerts %}
+
+    {% endblock %}
+
+    <div id="grid">
+
+    {% block image_gallery %}
+
+    {% endblock %}
+
+    </div>
+
+</body>
+
+</html>

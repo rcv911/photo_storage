@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block image_gallery %}
+
+  {% for image_name in image_names %}
+      <div align="center" class="thumbnail">
+
+        <a href={{url_for('uploaded_file', filename=image_name.get('name'))}} target="_blank">
+          <img width="100" height="100" border="0" align="center" src="{{url_for('uploaded_file', filename=image_name.get('name'))}}" >
+        </a>
+
+        <div class="caption">
+          <h4>
+            {{ image_name.get('name') }}
+          </h4>
+          <p>
+            Производитель: {{ image_name.get('maker') }}
+          </p>
+          <p>
+            Модель камеры: {{ image_name.get('model') }}
+          </p>
+          <p>
+            Размер: {{ image_name.get('size') }}
+          </p>
+          <p>
+            Дата создания: {{ image_name.get('created') }}
+          </p>
+          <p>
+            Дата загрузки: {{ image_name.get('uploaded') }}
+          </p>
+
+          <form action="/delete_file/{{ image_name.get('id') }}" method=get >
+            <input type=submit value=Delete class="btn btn-primary btn-sm">
+          </form>
+
+        </div>
+      </div>
+  {% endfor %}
+
+{% endblock %}
+
+{% block alerts %}
+
+<div class="container">
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <ul class=flashes>
+    {% for category, message in messages %}
+      {% if category == 'error' %}
+
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          {{ message }}
+        </div>
+
+      {% endif %}
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+
+</div>
+
+{% endblock %}
