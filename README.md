@@ -37,12 +37,17 @@ ALLOWED_EXTENSIONS = ['exif', 'jpg', 'jpeg', 'gif', 'png']
 
 ### Деплой приложения
 
-- БД деплоится в docker контейнер - ``docker-compose -f deploy_postgres.yml up -d`` 
+#### Тихий:
+- Автоматический через ``deploy.sh``
+
+#### Ручной:
+- БД деплоится в docker контейнер - ``sudo docker-compose -f deploy_postgres.yml up -d`` 
 на порту ``5454``
 - Миграция происходит через приложение:
  1) ``python3 manage.py db migrate``
  2) ``python3 manage.py db upgrade``
 - Запуск приложения ``python3 main.py``
+- Приложение по умолчанию поднимется на локальной машине ``http://127.0.0.1:5000/``
 
 ### Flake8
 
